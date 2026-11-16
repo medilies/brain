@@ -1,0 +1,25 @@
+# Every skill reaches every Claude Code config listed here.
+# Own skills are the folders under skills/ and need no entry.
+configs = ["~/.claude-personal", "~/.claude"]
+
+# Third-party skills, pinned to an exact commit.
+# Move a pin with: go run ./cmd/skills update <repo>
+
+[[source]]
+repo = "mattpocock/skills"
+sha = "5863806dd4e15c63174bee4e7515a4256792ecfa"
+skills = [
+  "code-review",
+  "domain-modeling",
+  "grill-with-docs",
+  "grilling",
+  "prototype",
+  "research",
+  "setup-matt-pocock-skills",
+  "wayfinder",
+]
+
+[[source]]
+repo = "microsoft/tui-test"
+sha = "84b741eca41d19d321feeace5a8ea435e19e3c1b"
+skills = ["tui-test"]
