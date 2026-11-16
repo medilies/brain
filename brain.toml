@@ -1,6 +1,8 @@
-# Every skill reaches every Claude Code config listed here.
+# The nerve release that carries this Brain: change it, commit, nerve sync.
+nerve = "v0.1.0"
+
 # Own skills are the folders under skills/ and need no entry.
-configs = ["~/.claude-personal", "~/.claude"]
+profiles = ["personal", "work"]
 
 # Third-party skills, pinned to an exact commit.
 # Move a pin with: nerve update <repo>
