@@ -1,4 +1,15 @@
-# Laravel (PHP)
+---
+name: laravel-stack
+description: Laravel (PHP) project preferences (versions, Docker, layer boundaries, database, OpenAPI, tools). Use whenever working in or bootstrapping a Laravel project.
+---
+
+# Laravel (PHP) stack
+
+## Project overrides
+
+Before following a step, check the project's `CLAUDE.md` and `AGENTS.md`, and the files they link to, for rules on the same step. Where they conflict with this skill, follow the project. Where they add to it, do both.
+
+Headings name the `start-project` step they serve during a bootstrap. Outside a bootstrap, follow them whenever the topic comes up.
 
 ## Ask in Step 1
 

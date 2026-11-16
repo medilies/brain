@@ -57,17 +57,17 @@ Apply these to all generated code, including the example slice, and write them i
 - **Defaults:** classes are `final`, properties are `readonly` where the language allows, types are strict, and domain errors are specific exception classes with named constructors (`InsufficientFunds::forAccount($id)`).
 - **Ubiquitous language.** Class and method names come from the domain, not from the framework or the database.
 
-## Stack files
+## Stack skills
 
-Everything specific to a language or framework lives in `stacks/`, next to this file. Once the stack is chosen in Step 1, read its file and follow it alongside the steps below:
+Everything specific to a language or framework lives in its stack skill. Once the stack is chosen in Step 1, load it and follow it alongside the steps below:
 
-- [stacks/laravel.md](stacks/laravel.md): Laravel (PHP)
-- [stacks/symfony.md](stacks/symfony.md): Symfony (PHP)
-- [stacks/typescript.md](stacks/typescript.md): TypeScript / Node
-- [stacks/python.md](stacks/python.md): Python
-- [stacks/go.md](stacks/go.md): Go, including CLIs and TUIs
+- `laravel-stack`: Laravel (PHP)
+- `symfony-stack`: Symfony (PHP)
+- `typescript-stack`: TypeScript / Node
+- `python-stack`: Python
+- `go-stack`: Go, including CLIs and TUIs
 
-For a stack with no file, apply the same principles with that stack's usual tools, and offer to write its file when the bootstrap is done.
+For a stack with no stack skill, apply the same principles with that stack's usual tools, and offer to write its stack skill when the bootstrap is done.
 
 ## Step 1: Ask about the stack
 
@@ -82,7 +82,7 @@ Before creating any files, ask with AskUserQuestion, or in plain text if that to
   - **None** (e.g. a library or a stateless service).
 - **First bounded context(s):** what the core domain is called, e.g. `Billing` or `Catalog`. Offer to start with one.
 - **GitHub remote:** create a private repo now with `gh repo create` (public only if the user asks), use an existing remote, or stay local only.
-- **Stack-specific options** listed in the stack file, e.g. for Laravel: whether to include Rector.
+- **Stack-specific options** listed in the stack skill, e.g. for Laravel: whether to include Rector.
 
 Do not ask about the local environment (Docker Compose for server apps, native for CLIs and TUIs), the OpenAPI approach (always generated), or hosting (none in the early phases).
 
@@ -123,7 +123,7 @@ Before every commit, and at the end of each iteration of work, run the formatter
 
 ## Step 4: One version everywhere
 
-Choose the language version once, e.g. PHP `8.4`, and use exactly that value in every place it appears. Where a tool can read the version from a file, point it at that file rather than repeating the number. The stack file lists the places for its language. The PostgreSQL major version is the same in `compose.yaml` and in the CI service container.
+Choose the language version once, e.g. PHP `8.4`, and use exactly that value in every place it appears. Where a tool can read the version from a file, point it at that file rather than repeating the number. The stack skill lists the places for its language. The PostgreSQL major version is the same in `compose.yaml` and in the CI service container.
 
 When the version changes later, change every location in the same commit. The reviewer checks this.
 
@@ -134,7 +134,7 @@ Server apps only.
 - Write a project `Dockerfile` for local development, based on the official language image, with the version taken from a build `ARG` set to the pinned value. Install only the extensions and tools the project needs. Do not add a production stage during the early phases.
 - Write `compose.yaml` (not `docker-compose.yml`, and no top-level `version:` key) with:
   - `app`: built from the Dockerfile, with the source bind-mounted, running as a non-root user whose UID/GID matches the host.
-  - a real web/app server, as the stack file says. Never a framework dev server.
+  - a real web/app server, as the stack skill says. Never a framework dev server.
   - `postgres` when PostgreSQL is used (see Step 7), with `depends_on` and `condition: service_healthy`.
   - local substitutes such as Mailpit, only once a feature needs them (see Early phases).
   - Named volumes for database data.
@@ -155,11 +155,11 @@ src/
   Shared/            # Shared kernel, created only when something is genuinely shared.
 ```
 
-The stack file gives the language's own spelling of this layout.
+The stack skill gives the language's own spelling of this layout.
 
 The framework's own HTTP layer (controllers, requests, resources, routes) stays thin. It maps HTTP to application commands or queries and maps results back. This layer is also where the OpenAPI generator reads from, so it must be well typed (see Step 8).
 
-Dependency rule: `Domain` depends on nothing. `Application` depends only on `Domain`. `Infrastructure` and the framework layer depend inward. Enforce this with the tool the stack file names.
+Dependency rule: `Domain` depends on nothing. `Application` depends only on `Domain`. `Infrastructure` and the framework layer depend inward. Enforce this with the tool the stack skill names.
 
 Ports go where their concept lives. Ports about domain concepts (repositories, external systems the domain drives) live in `Domain`. Ports for talking to the user (forms, confirmation prompts, an editor, pickers) live in `Application`. Every adapter, UI screens included, lives in `Infrastructure`. Screens and forms hold no logic: they only collect answers, which domain constructors check, or a choice, which a use case carries out.
 
@@ -198,7 +198,7 @@ Persistence is an infrastructure concern:
 
 ## Step 8: OpenAPI (auto-generated)
 
-- Generate the spec from code using the generator the stack file names. Prefer generators that infer from routes, validation and response types over ones that need hand-written annotations. If annotations or attributes are needed, put them only in the HTTP layer, never on Domain or Application classes.
+- Generate the spec from code using the generator the stack skill names. Prefer generators that infer from routes, validation and response types over ones that need hand-written annotations. If annotations or attributes are needed, put them only in the HTTP layer, never on Domain or Application classes.
 - Add a single command that exports the spec to `docs/openapi.json` (OpenAPI 3.1 where the generator supports it), e.g. `make docs`. Commit the exported file so API changes show up in PR diffs.
 - Generated docs are only as good as the code they read. Use typed request validation, typed response resources/DTOs, explicit status codes, and short summaries on endpoints. Use a consistent error response format (RFC 9457 problem+json) and declare security schemes.
 - Serve the interactive docs UI locally only.
@@ -253,7 +253,7 @@ Code, configs, CLI, UI text, docs and commits use these words, and only these. O
 
 ## Environment
 - <Docker Compose only, no framework Docker wrapper or dev server. Run commands through the Makefile or `docker compose exec app ...`. | No Docker: <the tool> drives the host's real <tmux, shell, files>.>
-- <Language> version is <X.Y> everywhere (<the places from the stack file>). Change all of them together, or none.
+- <Language> version is <X.Y> everywhere (<the places from the stack skill>). Change all of them together, or none.
 - Storage: <PostgreSQL | SQLite | PostgreSQL main, SQLite for fast tests | plain YAML files under <dir>, with a JSON Schema kept in step and checked by a test>. Persistence lives in Infrastructure only. Fake data only, from factories and seeders.
 - Migrations are forward-only: never write `down` methods and never edit a merged migration. Fix mistakes with a new migration.
 
