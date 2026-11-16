@@ -3,7 +3,7 @@
 configs = ["~/.claude-personal", "~/.claude"]
 
 # Third-party skills, pinned to an exact commit.
-# Move a pin with: go run ./cmd/skills update <repo>
+# Move a pin with: nerve update <repo>
 
 [[source]]
 repo = "mattpocock/skills"

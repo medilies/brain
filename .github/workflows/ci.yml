@@ -10,6 +10,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  # The nerve commit this Brain is checked with.
+  NERVE: 41b82abac1ce806ab67430179cfc5f6d0e4da40b
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -17,8 +21,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
-          go-version-file: go.mod
-      - run: test -z "$(gofmt -l .)"
-      - run: go vet ./...
-      - run: go test ./...
-      - run: go run ./cmd/skills check
+          go-version: stable
+      - run: go run github.com/medilies/nerve/cmd/nerve@${NERVE} check
