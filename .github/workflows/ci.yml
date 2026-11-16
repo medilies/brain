@@ -21,7 +21,9 @@ jobs:
           cache: false
       - name: nerve check, at the release brain.toml pins
         run: go run "github.com/medilies/nerve/cmd/nerve@$(sed -n 's/^nerve = "\(.*\)"$/\1/p' brain.toml)" check
+      - name: The marketplace's own format
+        run: npx -y @anthropic-ai/claude-code@2.1.326 plugin validate .
       - name: Own skills defer to the project
         run: |
-          missing=$(grep -L '^## Project overrides$' skills/*/SKILL.md || true)
+          missing=$(grep -L '^## Project overrides$' plugins/brain/skills/*/SKILL.md || true)
           test -z "$missing" || { echo "no ## Project overrides section in:"; echo "$missing"; exit 1; }

@@ -1,4 +1,22 @@
 {
+  "extraKnownMarketplaces": {
+    "brain": {
+      "source": { "source": "directory", "path": "{{brain}}" },
+      "autoUpdate": true
+    }
+  },
+  "enabledPlugins": {
+    "brain@brain": true,
+    "code-review@brain": true,
+    "domain-modeling@brain": true,
+    "grill-with-docs@brain": true,
+    "grilling@brain": true,
+    "prototype@brain": true,
+    "research@brain": true,
+    "setup-matt-pocock-skills@brain": true,
+    "wayfinder@brain": true,
+    "tui-test@brain": true
+  },
   "theme": "dark",
   "modelSettings": {
     "claude-sonnet-5-5": {

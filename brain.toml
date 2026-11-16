@@ -1,27 +1,8 @@
 # The nerve release that carries this Brain: change it, commit, nerve sync.
-nerve = "v0.1.0"
+nerve = "v0.2.0"
 
-# Own skills are the folders under skills/ and need no entry.
 profiles = ["personal", "work"]
 
-# Third-party skills, pinned to an exact commit.
+# Skills are plugins, listed in .claude-plugin/marketplace.json: own skills in
+# plugins/brain/skills/, third-party ones pinned to a commit.
 # Move a pin with: nerve update <repo>
-
-[[source]]
-repo = "mattpocock/skills"
-sha = "5863806dd4e15c63174bee4e7515a4256792ecfa"
-skills = [
-  "code-review",
-  "domain-modeling",
-  "grill-with-docs",
-  "grilling",
-  "prototype",
-  "research",
-  "setup-matt-pocock-skills",
-  "wayfinder",
-]
-
-[[source]]
-repo = "microsoft/tui-test"
-sha = "84b741eca41d19d321feeace5a8ea435e19e3c1b"
-skills = ["tui-test"]

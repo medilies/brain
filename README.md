@@ -1,10 +1,11 @@
 # brain
 
-My Brain: the skills, settings and standing instructions my agents work with. [nerve](https://github.com/medilies/nerve) carries it to every surface: each Claude Code config and each claude.ai account. Words used here are defined in [GLOSSARY.md](GLOSSARY.md) and in [nerve's glossary](https://github.com/medilies/nerve/blob/main/GLOSSARY.md).
+My Brain: the skills, settings and standing instructions my agents work with. [nerve](https://github.com/medilies/nerve) carries it to every Claude Code config; its skills reach claude.ai as plugins. Words used here are defined in [GLOSSARY.md](GLOSSARY.md) and in [nerve's glossary](https://github.com/medilies/nerve/blob/main/GLOSSARY.md).
 
-- `brain.toml`: the nerve release, the profiles (`personal`, `work`), and third-party skills pinned to a commit.
-- `skills/<name>/`: own skills: processes, `start-project`, and a stack skill per stack (`go-stack`, …).
-- `settings/`: Claude Code settings for every config (`base.json`) and per profile.
+- `brain.toml`: the nerve release and the profiles (`personal`, `work`).
+- `.claude-plugin/marketplace.json`: the plugins: own skills as `brain`, and third-party skills pinned to a commit.
+- `plugins/brain/skills/<name>/`: own skills: processes, `start-project`, and a stack skill per stack (`go-stack`, …). Invoked as `/brain:<name>`.
+- `settings/`: Claude Code settings for every config (`base.json`, which also enables the plugins) and per profile.
 
 How each of these reaches a config, and every command: [nerve's README](https://github.com/medilies/nerve#readme).
 
@@ -17,6 +18,7 @@ Day to day, ask Claude through the `nerve` skill: "sync my brain", "remember tha
 | Set up a new machine | Install nerve, `gh repo clone medilies/brain ~/dev/brain`, then `nerve init ~/dev/brain ~/.claude-personal=personal ~/.claude=work` and `nerve sync` |
 | Refresh everything | `nerve sync` |
 | Move to a new nerve release | Change `nerve` in `brain.toml`, commit, `nerve sync` |
+| Use the skills on claude.ai | Once, on the personal account only: add `medilies/brain` as a plugin marketplace and install its plugins |
 
 ## Rules
 
