@@ -42,5 +42,5 @@
   "disableClaudeAiConnectors": true,
   "disableWorkflows": true,
   "disableBundledSkills": true,
-  "enableArtifact": false
+  "enableArtifact": true
 }
