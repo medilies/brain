@@ -6,5 +6,8 @@
       "effortLevel": "high"
     }
   },
-  "disableClaudeAiConnectors": false
+  "disableClaudeAiConnectors": false,
+  "enabledPlugins": {
+    "brain@brain": false
+  }
 }
