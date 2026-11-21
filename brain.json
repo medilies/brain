@@ -29,8 +29,19 @@
       ]
     }
   ],
+  "hooks": {
+    "didata-session-title": {
+      "event": "UserPromptSubmit",
+      "command": "{{brain}}/hooks/didata-session-title.sh"
+    }
+  },
   "common": {
     "settings": {
+      "attribution": {
+        "commit": "",
+        "pr": "",
+        "sessionUrl": false
+      },
       "enableArtifact": false,
       "permissions": {
         "deny": [
@@ -52,11 +63,5 @@
   },
   "projects": {
     "nerve": {}
-  },
-  "hooks": {
-    "didata-session-title": {
-      "event": "UserPromptSubmit",
-      "command": "{{brain}}/hooks/didata-session-title.sh"
-    }
   }
 }
