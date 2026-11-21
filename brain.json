@@ -43,6 +43,7 @@
         "sessionUrl": false
       },
       "enableArtifact": false,
+      "model": "opus",
       "permissions": {
         "deny": [
           "NotebookEdit",
