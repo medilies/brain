@@ -70,6 +70,10 @@
     }
   },
   "projects": {
-    "nerve": {}
+    "nerve": {
+      "skills": [
+        "grill-with-docs"
+      ]
+    }
   }
 }
