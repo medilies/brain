@@ -42,7 +42,6 @@
           "ReportFindings",
           "ScheduleWakeup",
           "AskUserQuestion",
-          "ArtifactComments",
           "ArtifactData"
         ]
       }
