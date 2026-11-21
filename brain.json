@@ -9,7 +9,7 @@
   "sources": [
     {
       "repo": "mattpocock/skills",
-      "sha": "5863806dd4e15c63174bee4e7515a4256792ecfa",
+      "sha": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
       "path": "skills/engineering",
       "skills": [
         "code-review",
@@ -23,7 +23,7 @@
     },
     {
       "repo": "microsoft/tui-test",
-      "sha": "84b741eca41d19d321feeace5a8ea435e19e3c1b",
+      "sha": "1eed9a99905f8cf92534384f4ceb46606251370d",
       "skills": [
         "tui-test"
       ]
