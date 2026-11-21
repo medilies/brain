@@ -1,8 +1,0 @@
-# The nerve release that carries this Brain: change it, commit, nerve sync.
-nerve = "v0.2.0"
-
-profiles = ["personal", "work"]
-
-# Skills are plugins, listed in .claude-plugin/marketplace.json: own skills in
-# plugins/brain/skills/, third-party ones pinned to a commit.
-# Move a pin with: nerve update <repo>
