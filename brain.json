@@ -1,6 +1,10 @@
 {
   "allowedSettings": [
-    "enableArtifact"
+    "enableArtifact",
+    "disableBundledSkills",
+    "disableWorkflows",
+    "effortLevel",
+    "modelSettings"
   ],
   "sources": [
     {
@@ -48,5 +52,11 @@
   },
   "projects": {
     "nerve": {}
+  },
+  "hooks": {
+    "didata-session-title": {
+      "event": "UserPromptSubmit",
+      "command": "{{brain}}/hooks/didata-session-title.sh"
+    }
   }
 }
