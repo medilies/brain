@@ -27,6 +27,7 @@
   ],
   "common": {
     "settings": {
+      "enableArtifact": false,
       "permissions": {
         "deny": [
           "NotebookEdit",
