@@ -44,6 +44,7 @@
       },
       "disableBundledSkills": true,
       "disableWorkflows": true,
+      "effortLevel": "high",
       "enableArtifact": false,
       "model": "opus",
       "permissions": {
