@@ -37,7 +37,8 @@
           "RemoteTrigger",
           "ReportFindings",
           "ScheduleWakeup",
-          "AskUserQuestion"
+          "AskUserQuestion",
+          "Artifact"
         ]
       }
     }
