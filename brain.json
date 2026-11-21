@@ -39,7 +39,8 @@
           "ScheduleWakeup",
           "AskUserQuestion",
           "Artifact",
-          "ArtifactComments"
+          "ArtifactComments",
+          "ArtifactData"
         ]
       }
     }
