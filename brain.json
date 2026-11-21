@@ -37,11 +37,7 @@
   },
   "common": {
     "settings": {
-      "attribution": {
-        "commit": "",
-        "pr": "",
-        "sessionUrl": false
-      },
+      "attribution": false,
       "disableBundledSkills": true,
       "disableWorkflows": true,
       "effortLevel": "high",
