@@ -76,6 +76,9 @@
         "domain-modeling",
         "grilling",
         "reviewing"
+      ],
+      "agents": [
+        "code-reviewer"
       ]
     }
   }
