@@ -63,7 +63,8 @@
           "RemoteTrigger",
           "ReportFindings",
           "ScheduleWakeup",
-          "AskUserQuestion"
+          "AskUserQuestion",
+          "DesignSync"
         ]
       }
     }
