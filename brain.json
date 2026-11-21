@@ -72,7 +72,8 @@
   "projects": {
     "nerve": {
       "skills": [
-        "grill-with-docs"
+        "grill-with-docs",
+        "domain-modeling"
       ]
     }
   }
