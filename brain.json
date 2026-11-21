@@ -1,11 +1,4 @@
 {
-  "allowedSettings": [
-    "enableArtifact",
-    "disableBundledSkills",
-    "disableWorkflows",
-    "effortLevel",
-    "modelSettings"
-  ],
   "sources": [
     {
       "repo": "mattpocock/skills",
