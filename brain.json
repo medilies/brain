@@ -5,26 +5,12 @@
       "sha": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
       "path": "skills/engineering",
       "skills": [
-        "ask-matt",
-        "code-review",
-        "codebase-design",
-        "diagnosing-bugs",
         "domain-modeling",
         "grill-with-docs",
-        "implement",
-        "implement-spec",
-        "improve-codebase-architecture",
-        "pr",
         "prototype",
         "research",
-        "retro",
         "setup-matt-pocock-skills",
-        "tdd",
-        "to-spec",
-        "to-tickets",
-        "triage",
-        "wayfinder",
-        "wizard"
+        "wayfinder"
       ]
     },
     {
@@ -32,13 +18,7 @@
       "sha": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
       "path": "skills/productivity",
       "skills": [
-        "grill-me",
-        "grilling",
-        "handoff",
-        "teach",
-        "to-questionnaire",
-        "wait-what",
-        "writing-for-agents"
+        "grilling"
       ]
     },
     {
