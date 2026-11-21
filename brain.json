@@ -74,7 +74,6 @@
       "permissions": {
         "deny": [
           "NotebookEdit",
-          "DesignSync",
           "CronCreate",
           "CronDelete",
           "CronList",
