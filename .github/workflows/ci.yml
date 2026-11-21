@@ -19,8 +19,8 @@ jobs:
         with:
           go-version: stable
           cache: false
-      - name: nerve check, at the release this Brain uses
-        run: go run github.com/medilies/nerve/cmd/nerve@v0.3.0 check
+      - name: nerve check, at the nerve commit this Brain uses
+        run: go run github.com/medilies/nerve/cmd/nerve@v0.3.1-0.20261121221339-e860cda4e81c check
       - name: Own skills defer to the project
         run: |
           missing=$(grep -L '^## Project overrides$' skills/*/SKILL.md || true)
