@@ -42,6 +42,7 @@
         "pr": "",
         "sessionUrl": false
       },
+      "disableBundledSkills": true,
       "enableArtifact": false,
       "model": "opus",
       "permissions": {
