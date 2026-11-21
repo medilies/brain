@@ -1,4 +1,7 @@
 {
+  "allowedSettings": [
+    "enableArtifact"
+  ],
   "sources": [
     {
       "repo": "mattpocock/skills",
