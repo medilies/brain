@@ -80,6 +80,9 @@
         "wayfinder",
         "grilling",
         "reviewing"
+      ],
+      "agents": [
+        "code-reviewer"
       ]
     },
     "nerve": {
