@@ -82,7 +82,8 @@
         "reviewing"
       ],
       "agents": [
-        "code-reviewer"
+        "code-reviewer",
+        "impact-explorer"
       ]
     },
     "nerve": {
