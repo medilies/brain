@@ -70,7 +70,11 @@
     }
   },
   "projects": {
-    "back": {},
+    "back": {
+      "skills": [
+        "domain-modeling"
+      ]
+    },
     "nerve": {
       "skills": [
         "grill-with-docs",
