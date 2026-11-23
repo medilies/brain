@@ -84,7 +84,10 @@
       "agents": [
         "code-reviewer",
         "impact-explorer"
-      ]
+      ],
+      "settings": {
+        "outputStyle": "Concise"
+      }
     },
     "nerve": {
       "skills": [
