@@ -109,6 +109,9 @@
       "agents": [
         "code-reviewer",
         "impact-explorer"
+      ],
+      "plugins": [
+        "playwright@claude-plugins-official"
       ]
     }
   }
