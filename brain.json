@@ -112,7 +112,10 @@
       ],
       "plugins": [
         "playwright@claude-plugins-official"
-      ]
+      ],
+      "settings": {
+        "enableArtifact": false
+      }
     }
   }
 }
