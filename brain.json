@@ -101,6 +101,13 @@
         "impact-explorer"
       ]
     },
-    "trip": {}
+    "trip": {
+      "skills": [
+        "typescript-stack",
+        "write-tests",
+        "commit-changes",
+        "reviewing"
+      ]
+    }
   }
 }
