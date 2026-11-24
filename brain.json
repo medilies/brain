@@ -107,6 +107,10 @@
         "write-tests",
         "commit-changes",
         "reviewing"
+      ],
+      "agents": [
+        "code-reviewer",
+        "impact-explorer"
       ]
     }
   }
