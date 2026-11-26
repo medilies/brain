@@ -26,6 +26,7 @@ The grade sets how many subagents run, and on which model.
 | Explorers (step 2) | none | 2 | 1 per module holding changed code, at most 3 |
 | A reviewers (step 4) | none | 1 per module, at most 2 | 1 per module, at most 3 |
 | B reviewer (step 4) | none | 1 | 1 |
+| C reviewer (step 4) | none | 1 | 1 |
 | Other reviewer (step 4) | 1, focus "fast" | none | none |
 | `needs:` fact checks (step 5) | you | 2 explorers | 1 explorer per module, as in step 2 |
 | Refute (step 5) | you, on unreproduced Correctness and Tests findings | 1 reviewer, on unreproduced Correctness and Tests findings | 1 reviewer on opus, on every Correctness and Tests finding |
@@ -47,17 +48,26 @@ Explorers run on haiku and reviewers on sonnet, as their agent files set; only d
 
    If the signature lines exceed ~300, pass the diff path to the explorers and have them extract the symbols themselves.
 
-3. **Tools, while the explorers run.** Run the project's strict type checker, linter, and dead-code/duplicate detectors on the branch, each under 4 GiB of memory and two CPUs (on Linux with systemd: `systemd-run --user --scope --quiet -p MemoryMax=4G -p MemorySwapMax=0 -p CPUQuota=200% <command>`; elsewhere, no limit). A tool killed by its limit is reported as not run. Save the output to the scratchpad, separating errors on lines this branch touched from pre-existing ones. Collect the settled decisions for this change from the project's memory notes and ADRs, if any, and the commit log.
+3. **Tools, while the explorers run.** Run the project's strict type checker, linter, and dead-code/duplicate detectors on the branch, each under 4 GiB of memory and two CPUs (on Linux with systemd: `systemd-run --user --scope --quiet -p MemoryMax=4G -p MemorySwapMax=0 -p CPUQuota=200% <command>`; elsewhere, no limit). A tool killed by its limit is reported as not run. Save the output to the scratchpad, separating errors on lines this branch touched from pre-existing ones. Collect the settled decisions for this change from the project's memory notes and ADRs, if any. The commit log says what the author did, not what was agreed: pass it as context, never as a settled decision.
 
-4. **Review.** In fast, spawn one `code-reviewer` with focus "fast", the diff path and the inputs below. Otherwise spawn the A and B reviewers the grade gives, each with the commit log path, the tool output path, the settled decisions, your scratchpad path and one focus:
+4. **Review.** In fast, spawn one `code-reviewer` with focus "fast", the diff path and the inputs below. Otherwise spawn the A, B and C reviewers the grade gives, each with the commit log path, the tool output path, the settled decisions, your scratchpad path and one focus:
    - **A. New logic: run it and try to break it.** One A reviewer per module (directory or package) holding new code, up to the grade's cap. Give each its module's diff slice (`git diff <merge-base>..HEAD -- <paths>`, saved to the scratchpad) and the full diff path for context. An A reviewer stays inside its slice: callers, permissions, CI, docs and settled performance figures belong to B. Spawn the A reviewers as soon as step 3 is done, without waiting for the explorers.
    - **B. Integration:** callers, permissions, data volume, CI, docs, migrations, with the full diff and the explorers' report paths. Spawn it once the explorers have reported.
+   - **C. Design:** with the full diff and the explorers' report paths; it runs nothing. For each new or changed class, method, parameter, dependency, config key and build step, it asks:
+     - Is it needed?
+     - Does it have more than one caller?
+     - Does it sit in the layer that owns the rule?
+     - Does it impose policy on subclasses or callers?
+     - Does an existing utility or library already do it?
+     - How do failures cross the boundary: thrown, returned, swallowed?
+
+     Spawn it with B.
 
    Pass facts and settled decisions, not your own conclusions about the code.
 
    Until the reviewers report, read no source or diff content yourself: steps 1-4 run on tool output, signature lines and the explorers' replies.
 
-5. **Verify.** Check every finding against the code, batching the reads for all findings into as few calls as possible. Check the `needs:` claims as the grade says: yourself in fast, else in one batch to the grade's `impact-explorer` subagents, then judge each finding on the evidence they return. Drop any bug without a concrete triggering input. Merge duplicates. Use the impact map to check for consumers the reviewers missed.
+5. **Verify.** Check every finding against the code, batching the reads for all findings into as few calls as possible. Check the `needs:` claims as the grade says: yourself in fast, else in one batch to the grade's `impact-explorer` subagents, then judge each finding on the evidence they return. Drop any Correctness finding without a concrete triggering input. Keep a design finding when it names the concept that can go or move and what replaces it; don't refute design findings. Merge duplicates. Use the impact map to check for consumers the reviewers missed.
 
    **Refute.** Take the Correctness and Tests findings the grade names. In fast, try to break each one yourself: find the guard that prevents it, or reproduce it under the reviewers' resource limits. Otherwise, spawn one `code-reviewer` (in deep with `model: opus`) with focus "refute", the full diff path, your scratchpad path and those findings as the reviewers wrote them, without your verdicts. Keep a finding that is reproduced, drop one refuted with quoted code, and judge the rest yourself. Skip this when no such finding remains.
 
@@ -70,6 +80,6 @@ There is no diff, so every issue counts and nothing is pre-existing. The steps c
 1. **Modules.** Instead of a diff, list the modules (directories or packages) with their size, and rank them by churn: `git log --since=6.months --name-only --format= | sort | uniq -c | sort -rn`. Save both to the scratchpad. Pick at most three modules to review in depth, the most churned first, unless the user named some.
 2. **Map.** The explorers find, for the picked modules: their entry points and public symbols, their callers in other modules, utilities duplicated across modules, and the docs that describe them.
 3. **Tools.** Run them on the whole project. All their output counts.
-4. **Review.** Give each A reviewer one picked module's paths, with focus "project: whole module", instead of a diff slice. B gets the module list and the explorers' reports, with focus "project: integration", and reviews how the modules fit together. Always use the subagents.
+4. **Review.** Give each A reviewer one picked module's paths, with focus "project: whole module", instead of a diff slice. B gets the module list and the explorers' reports, with focus "project: integration", and reviews how the modules fit together. C gets the picked modules' paths, with focus "project: design". Always use the subagents.
 5. **Verify** and **Refute** as above, with module paths instead of the diff path.
 6. **Report.** Findings without a pre-existing section. Name the modules that weren't reviewed in depth. End with the three findings to fix first instead of a verdict.

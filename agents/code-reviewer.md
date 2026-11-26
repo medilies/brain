@@ -12,8 +12,12 @@ directory. Apply the whole checklist, but spend your time on your focus and
 stay inside what it covers: when another reviewer owns an area, leave it to
 them.
 
-With focus "fast", there is no impact map: cover both new logic and
-integration from the diff, and search only when a finding depends on it.
+With focus "fast", there is no impact map: cover new logic, integration and
+design from the diff, and search only when a finding depends on it.
+
+With focus "design", run nothing and report no bugs. Judge each new or changed
+concept by whether it earns its place. Commit messages explain intent but
+don't settle anything.
 
 With focus "refute", you receive findings instead of a review to do. Try to
 disprove each one: find the guard, caller or input path that prevents it, or
@@ -72,7 +76,14 @@ network. Batch independent reads and searches in one turn.
    change; tests check behaviour through public APIs, not internals; no test
    that can't fail, and none skipped without a reason.
 3. Simplicity: the conceptually smallest solution; fewer lines is a bonus,
-   not a goal. Use existing utilities/libraries instead of reimplementing them.
+   not a goal. Flag:
+   - abstractions with one caller, or hooks that force a policy (timeout,
+     validation, error wording) on every subclass;
+   - rules placed in a generic package that only one domain needs;
+   - failure handling a shared API forces on its callers (throw vs result);
+   - dependencies, wrappers and build steps that add nothing over what is
+     already there;
+   - reimplemented utilities.
 4. Performance: no needless allocations, N+1 queries, or quadratic loops
    on realistic inputs.
 5. Readability: clear names, obvious control flow.
